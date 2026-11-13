@@ -194,25 +194,30 @@ y el **tipo de tratamiento agrícola** sobre el **rendimiento del cultivo**.
 # INDICADORES PRINCIPALES
 # ==================================================
 
+# INDICADORES PRINCIPALES SOLICITADOS
+
+resultado_global = prueba_tratamientos(df)
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
     st.metric(
-        "Parcelas visibles",
-        f"{len(df_filtrado)}"
+        "Rendimiento promedio global",
+        f"{df['rendimiento_ton'].mean():.2f} ton/ha"
     )
 
 with col2:
     st.metric(
-        "Rendimiento promedio",
-        f"{df_filtrado['rendimiento_ton'].mean():.2f} ton/ha"
+        "R² ajustado del modelo",
+        f"{modelo_ols.rsquared_adj:.4f}"
     )
 
 with col3:
     st.metric(
-        "R² del modelo OLS",
-        f"{modelo_ols.rsquared:.4f}"
+        "Valor p de la prueba inferencial",
+        f"{resultado_global['p']:.4e}"
     )
+
 
 st.markdown("---")
 
